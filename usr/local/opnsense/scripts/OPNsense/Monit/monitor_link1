@@ -14,8 +14,12 @@ if($status == "down") {
 } else if($status == "loss") {
     echo "gateway $GW_NAME has packet loss";
     exit(1);
-} else {
+} else if($status == "none") {
     echo "gateway $GW_NAME is online";
     exit(0);
+} else {
+    echo "gateway $GW_NAME is in unknown state";
+    exit(3);
 }
+
 
