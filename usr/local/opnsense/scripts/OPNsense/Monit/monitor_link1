@@ -1,0 +1,21 @@
+#!/usr/local/bin/php
+<?php
+require_once('config.inc');
+require_once('interfaces.inc');
+require_once('util.inc');
+
+$GW_NAME = "LINK1_GW";
+
+$gateways_status = return_gateways_status();
+$status = $gateways_status[$GW_NAME]["details"]["status"];
+if($status == "down") {
+    echo "gateway $GW_NAME is offline";
+    exit(2);
+} else if($status == "loss") {
+    echo "gateway $GW_NAME has packet loss";
+    exit(1);
+} else {
+    echo "gateway $GW_NAME is online";
+    exit(0);
+}
+
